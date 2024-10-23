@@ -30,13 +30,8 @@ from deepgram import (
 
 class LanguageModelProcessor:
     def __init__(self):
-        # self.llm = ChatGroq(temperature=0, model_name="mixtral-8x7b-32768", groq_api_key=os.getenv("GROQ_API_KEY"))
         self.llm = ChatOpenAI(temperature=0, model_name="gpt-4-0125-preview", openai_api_key="OPENAI_API_KEY")
-        # self.llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-0125", openai_api_key=os.getenv("OPENAI_API_KEY"))
-
         self.memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-
-        # Load the system prompt from a file
         system_prompt = f"""
             —--------------------START OF PROMPT—-------------------------------
             You are a sales agent for Avoca Air Condioning company.
@@ -103,7 +98,7 @@ class LanguageModelProcessor:
         self.memory.chat_memory.add_ai_message(response['text'])  # Add AI response to memory
 
         elapsed_time = int((end_time - start_time) * 1000)
-        print(f"Avoca AI ({elapsed_time}ms): {response['text']}")
+        print(f"AI Assistant({elapsed_time}ms): {response['text']}")
         return response['text']
 
 class TextToSpeech:
