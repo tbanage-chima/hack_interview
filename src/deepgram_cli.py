@@ -98,7 +98,7 @@ class LanguageModelProcessor:
         self.memory.chat_memory.add_ai_message(response['text'])  # Add AI response to memory
 
         elapsed_time = int((end_time - start_time) * 1000)
-        print(f"AI Assistant({elapsed_time}ms): {response['text']}")
+        print(f"AI Assistant ({elapsed_time}ms): {response['text']}")
         return response['text']
 
 class TextToSpeech:
@@ -203,7 +203,7 @@ async def get_transcript(callback):
                 # Check if the full_sentence is not empty before printing
                 if len(full_sentence.strip()) > 0:
                     full_sentence = full_sentence.strip()
-                    print(f"Human: {full_sentence}")
+                    print(f"Customer: {full_sentence}")
                     callback(full_sentence)  # Call the callback with the full_sentence
                     transcript_collector.reset()
                     transcription_complete.set()  # Signal to stop transcription and exit
